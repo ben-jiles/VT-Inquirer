@@ -18,7 +18,7 @@ def main():
     print_menu()
 
 def print_menu():
-    print "\n", 30 * "-" , "MAIN MENU" , 30 * "-"
+    print("\n", 30 * "-" , "MAIN MENU" , 30 * "-")
     choice = input("""
        
         1. Scan URL
@@ -36,7 +36,7 @@ def print_menu():
     elif choice == "4":
         sys.exit
     else:
-        print "Please try again."
+        print("Please try again.")
         print_menu()
 
 def scanurl():
@@ -48,7 +48,7 @@ def scandomain():
     jsonparser(vt.getdomain(domain))
 
 def scanip():
-    print "\n", 30 * "-" , "SCAN IP ADDRESSES" , 30 * "-"
+    print("\n", 30 * "-" , "SCAN IP ADDRESSES" , 30 * "-")
     choice_ip = raw_input("""
     
         Would you like to:
@@ -62,9 +62,9 @@ def scanip():
         url = 'https://www.virustotal.com/api/v3/ip_addresses/' + ip
         headers = {'x-apikey':userkey}
         response = requests.get(url, headers=headers)
-        print response
+        print(response)
         storage = response.json()
-        print storage
+        print(storage)
         vt_ip_score_malicious = str(storage['data']['attributes']['last_analysis_stats']['malicious'])
         vt_ip_score_harmless = str(storage['data']['attributes']['last_analysis_stats']['harmless'])
         vt_ip_score_full = vt_ip_score_malicious + "/" + vt_ip_score_harmless
@@ -82,9 +82,9 @@ def scanip():
                 url = 'https://www.virustotal.com/api/v3/ip_addresses/' + ip
                 headers = {'x-apikey':userkey}
                 response = requests.get(url, headers=headers)
-                print response
+                print(response)
                 storage = response.json()
-                print storage
+                print(storage)
                 vt_ip_score_malicious = str(storage['data']['attributes']['last_analysis_stats']['malicious'])
                 vt_ip_score_harmless = str(storage['data']['attributes']['last_analysis_stats']['harmless'])
                 vt_ip_country = str(storage['data']['attributes']['country'])
@@ -95,10 +95,10 @@ def scanip():
                 file_output.write(vt_ip_full_entry)
 
         file_output.close()
-        print "VirusTotal IP address scans are complete and are now available in your ouput file.\n"
+        print("VirusTotal IP address scans are complete and are now available in your ouput file.\n")
     
     else:
-        print "Please try again."
+        print("Please try again.")
         scanip()
 
     ip_last_choice = raw_input("""
@@ -117,7 +117,7 @@ def scanip():
     elif ip_last_choice == "3":
         sys.exit("\nGoodbye, friend.")
     else:
-        print "Please try again."
+        print("Please try again.")
 
 if __name__ == '__main__':
     main()

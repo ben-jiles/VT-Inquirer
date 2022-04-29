@@ -18,8 +18,8 @@ def main():
     print_menu()
 
 def print_menu():
-    print("\n", 30 * "-" , "MAIN MENU" , 30 * "-")
-    choice = input("""
+    print(30 * "-" + "MAIN MENU" + 30 * "-")
+    choice = raw_input("""
        
         1. Scan URL
         2. Scan domain
@@ -44,7 +44,7 @@ def scanurl():
     jsonparser(vt.geturl(url))
 
 def scandomain():
-    print("\n", 30 * "-" , "Scan Domains" , 30 * "-")
+    print(30 * "-" + "Scan Domains" + 30 * "-")
     choice_domain = raw_input("""
 
         Would you like to:
@@ -63,7 +63,7 @@ def scandomain():
         vt_domain_score_harmless = int(storage['data']['attributes']['last_analysis_stats']['harmless'])
         vt_domain_score_undetected = int(storage['data']['attributes']['last_analysis_stats']['undetected'])
         vt_domain_score_full = str(vt_domain_score_malicious) + "/" + str(vt_domain_score_malicious+ vt_domain_score_harmless + vt_domain_score_undetected)
-        vt_domain_url = 'https://www.virustotal.com/gui/domains/' + domain
+        vt_domain_url = 'https://www.virustotal.com/gui/domain/' + domain
         vt_domain_full_entry = vt_domain_score_full + ", " + vt_domain_url + "\n"
         print(vt_domain_full_entry)
 
@@ -74,7 +74,6 @@ def scandomain():
         with open(file_upload_name, 'r') as file_upload:
             for raw_domain in file_upload:
                 domain = raw_domain.strip()
-                domain = raw_input('Please enter domain:')
                 url = 'https://www.virustotal.com/api/v3/domains/' + domain
                 headers = {'x-apikey':userkey}
                 response = requests.get(url, headers=headers)
@@ -83,7 +82,7 @@ def scandomain():
                 vt_domain_score_harmless = int(storage['data']['attributes']['last_analysis_stats']['harmless'])
                 vt_domain_score_undetected = int(storage['data']['attributes']['last_analysis_stats']['undetected'])
                 vt_domain_score_full = str(vt_domain_score_malicious) + "/" + str(vt_domain_score_malicious+ vt_domain_score_harmless + vt_domain_score_undetected)
-                vt_domain_url = 'https://www.virustotal.com/gui/domains/' + domain
+                vt_domain_url = 'https://www.virustotal.com/gui/domain/' + domain
                 vt_domain_full_entry = vt_domain_score_full + ", " + vt_domain_url + "\n"
                 print(vt_domain_full_entry)
                 file_output.write(vt_domain_full_entry)
@@ -113,7 +112,7 @@ def scandomain():
         print("Please try again.")
 
 def scanip():
-    print("\n", 30 * "-" , "SCAN IP ADDRESSES" , 30 * "-")
+    print(30 * "-" + "SCAN IP ADDRESSES" + 30 * "-")
     choice_ip = raw_input("""
     
         Would you like to:
